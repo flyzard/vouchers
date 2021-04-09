@@ -1,0 +1,41 @@
+{
+    "name": "flyzard/vouchers",
+    "description": ":package_description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "author name",
+            "email": "author email",
+            "homepage": "author homepage"
+        }
+    ],
+    "homepage": "https://github.com/flyzard/vouchers",
+    "keywords": ["Laravel", "Vouchers"],
+    "require": {
+        "illuminate/support": "~7|~8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~5|~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flyzard\\Vouchers\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Flyzard\\Vouchers\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Flyzard\\Vouchers\\VouchersServiceProvider"
+            ],
+            "aliases": {
+                "Vouchers": "Flyzard\\Vouchers\\Facades\\Vouchers"
+            }
+        }
+    }
+}
