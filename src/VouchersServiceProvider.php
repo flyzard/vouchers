@@ -15,7 +15,7 @@ class VouchersServiceProvider extends ServiceProvider
     {
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'flyzard');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'flyzard');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         // Publishing is only necessary when using the CLI.
@@ -31,7 +31,7 @@ class VouchersServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/vouchers.php', 'vouchers');
+        $this->mergeConfigFrom(__DIR__ . '/../config/vouchers.php', 'vouchers');
 
         // Register the service the package provides.
         $this->app->singleton('vouchers', function ($app) {
@@ -58,8 +58,15 @@ class VouchersServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/vouchers.php' => config_path('vouchers.php'),
+            __DIR__ . '/../config/vouchers.php' => config_path('vouchers.php'),
         ], 'vouchers.config');
+
+        // Publish Migration
+        if (!class_exists('CreateVouchersTable')) {
+            $this->publishes([
+                __DIR__ . '/../database/migrations/create_vouchers_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_vouchers_table.php'),
+            ], 'migrations');
+        }
 
         // Publishing the views.
         /*$this->publishes([

@@ -4,9 +4,8 @@
     "license": "license",
     "authors": [
         {
-            "name": "author name",
-            "email": "author email",
-            "homepage": "author homepage"
+            "name": "Joao Felizardo",
+            "email": "joaofelizardo@ymail.com"
         }
     ],
     "homepage": "https://github.com/flyzard/vouchers",
@@ -20,13 +19,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Flyzard\\Vouchers\\": "src/"
+            "Flyzard\\Vouchers\\": "src/",
+            "Flyzard\\Vouchers\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Flyzard\\Vouchers\\Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-f": "vendor/bin/phpunit --filter"
     },
     "extra": {
         "laravel": {

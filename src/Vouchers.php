@@ -4,5 +4,11 @@ namespace Flyzard\Vouchers;
 
 class Vouchers
 {
-    // Build wonderful things
+    /**
+     * 
+     */
+    public function sayhi()
+    {
+        return "This says hi";
+    }
 }

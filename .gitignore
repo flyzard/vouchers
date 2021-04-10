@@ -1,0 +1,22 @@
+/node_modules
+/public/hot
+/public/img/products/
+/public/storage
+/storage/*.key
+/vendor
+.env
+Neomaquina.code-workspace
+cred.json
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.DS_Store
+praxis-granite-273313-8200baa8fba3.json
+.vscode/
+holder.txt
+artigos.xls
+ranking artigos por familia subfamilia em valor.xls
+/tests/Browser/screenshots
