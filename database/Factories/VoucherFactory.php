@@ -22,7 +22,7 @@ class VoucherFactory extends Factory
     public function definition()
     {
         return [
-            //
+            
         ];
     }
 }

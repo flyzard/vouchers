@@ -15,7 +15,9 @@ class CreateVouchersTable extends Migration
             $table->enum('status', ['new', 'used', 'disabled', 'complete'])->default('new');
             $table->timestamp('from_date')->nullable();
             $table->timestamp('to_date')->nullable();
-            $table->json('params')->nullable(); // to apply restrictions as categories, products and what not
+            $table->integer('uses')->default(0);
+            $table->integer('limit')->nullable();
+            $table->json('conditions')->nullable(); // to apply restrictions as categories, products and what not
             $table->softDeletes();
             $table->timestamps();
         });

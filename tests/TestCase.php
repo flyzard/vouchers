@@ -25,4 +25,20 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         (new \CreateVouchersTable)->up();
     }
+
+    protected function assertArraysAreSimilar($a, $b)
+    {
+        if (count(array_diff_assoc($a, $b))) {
+            $this->assertTrue(false, "the arrays are not similar");
+        }
+
+        foreach ($a as $k => $v) {
+            if ($v !== $b[$k]) {
+                $this->assertTrue(false, "the arrays are not similar");
+                return false;
+            }
+        }
+
+        $this->assertTrue(true);
+    }
 }
