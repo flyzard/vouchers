@@ -13,6 +13,17 @@ class VouchersServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->publishes([
+            __DIR__ . '/../config/vouchers.php' => config_path('vouchers.php'),
+        ], 'vouchers.config');
+
+        // Publish Migration
+        if (!class_exists('CreateVouchersTable')) {
+            $this->publishes([
+                __DIR__ . '/../database/migrations/create_vouchers_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_vouchers_table.php'),
+            ], 'migrations');
+        }
+
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'flyzard');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'flyzard');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
@@ -90,5 +101,25 @@ class VouchersServiceProvider extends ServiceProvider
 
         // Registering package commands.
         // $this->commands([]);
+    }
+
+    /**
+     * Get publish config path.
+     *
+     * @return string
+     */
+    protected function getPublishConfigPath(): string
+    {
+        return __DIR__ . '/../config/vouchers.php';
+    }
+
+    /**
+     * Get publish migrations path.
+     *
+     * @return string
+     */
+    protected function getPublishMigrationsPath(): string
+    {
+        return __DIR__ . '/../database/migrations/';
     }
 }
