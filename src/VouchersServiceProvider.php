@@ -35,7 +35,12 @@ class VouchersServiceProvider extends ServiceProvider
 
         // Register the service the package provides.
         $this->app->singleton('vouchers', function ($app) {
-            return new Vouchers;
+            $generator = new VouchersCodeGenerator(
+                config('vouchers.charSet', null),
+                config('vouchers.mask', null),
+                config('vouchers.maxLength', null)
+            );
+            return new Vouchers($generator);
         });
     }
 

@@ -12,8 +12,9 @@ class VouchersCodeGenerator
     private array $existingCodes = [];
     private string $mask = "****-****";
 
-    public function __construct(string $maskCode = null, int $maxlength = null)
+    public function __construct(string $charSet = null, string $maskCode = null, int $maxlength = null)
     {
+        $this->charSet = $charSet ?? $this->charSet;
         $this->mask = $maskCode ?? $this->mask;
         $this->maxlength = $maxlength ?? $this->maxlength;
     }
@@ -42,7 +43,6 @@ class VouchersCodeGenerator
         } elseif (!empty($this->mask)) {
             // In case the mask is setup without characters to be replaced (fixed given code)
             if (!$this->codeIsUnique($this->mask)) {
-                var_dump($this->mask);
                 throw new InvalidMaskException("The voucher code setted up on the mask is already in use!", 1);
             }
             return $this->mask;
@@ -71,11 +71,29 @@ class VouchersCodeGenerator
     }
 
     /**
+     * Set the set of characters available for the code formation
+     */
+    public function setCharSet(string $charSet): VouchersCodeGenerator
+    {
+        $this->charSet = $charSet;
+
+        return $this;
+    }
+
+    /**
+     * Get the set of characters available for the code formation
+     */
+    public function getCharSet(): string
+    {
+        return $this->charSet ?? "";
+    }
+
+    /**
      * Sets the mask for the code. The '*' in the mask would be
      * replaced by the given character set, the given string
      * or the already set up character set on this class.
      */
-    public function setMask($mask = "****-****")
+    public function setMask($mask = "****-****"): VouchersCodeGenerator
     {
         $this->mask = $mask;
 

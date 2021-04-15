@@ -9,7 +9,21 @@ class TestCase extends \Orchestra\Testbench\TestCase
     public function setUp(): void
     {
         parent::setUp();
-        // additional setup
+
+        // $this->userMock = \Mockery::mock('Flyzard\\Vouchers\\Tests\\User');
+
+        // $this->app->instance('App\Models\User', $this->userMock);
+
+        $this->user = $this->createUser();
+    }
+
+    protected function createUser()
+    {
+        $user = new User();
+
+        $user->id = rand(1, 2000);
+
+        return $user;
     }
 
     protected function getPackageProviders($app)

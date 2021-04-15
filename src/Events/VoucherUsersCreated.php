@@ -7,15 +7,12 @@ namespace Flyzard\Vouchers\Events;
 use Flyzard\Vouchers\Models\Voucher;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Broadcasting\InteractsWithSockets;
 
-
-class VoucherCreated
+class VoucherUsersCreated
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, SerializesModels;
 
-    /** @var Voucher */
-    private $voucher;
+    private Voucher $voucher;
 
     public function __construct(Voucher $voucher)
     {

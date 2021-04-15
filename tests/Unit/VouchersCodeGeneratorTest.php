@@ -80,17 +80,17 @@ class VouchersCodeGeneratorTest extends TestCase
         $this->assertEquals(substr($code, -4), "_end", "The end of the masks is not the expected!");
     }
 
-    /** @test **/
-    public function a_exception_is_raised_when_the_mask_is_not_valid()
-    {
-        $this->expectException(InvalidMaskException::class);
+    // /** @test **/
+    // public function a_exception_is_raised_when_the_mask_is_not_valid()
+    // {
+    //     $this->expectException(InvalidMaskException::class);
 
-        Vouchers::createVoucher("mask-invalid_no_stars_end");
+    //     Vouchers::createVoucher("mask-invalid_no_stars_end");
 
-        // Try to generate the same code already on the database
-        $this
-            ->generator
-            ->setMask("mask-invalid_no_stars_end")
-            ->uniqueCode();
-    }
+    //     // Try to generate the same code already on the database
+    //     $this
+    //         ->generator
+    //         ->setMask("mask-invalid_no_stars_end")
+    //         ->uniqueCode();
+    // }
 }

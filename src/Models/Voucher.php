@@ -19,12 +19,31 @@ class Voucher extends Model
         'status',
         'from_date',
         'to_date',
-        'params'
+        'limit',
+        'uses',
+        'properties',
+        'redeemer_restricted'
     ];
+
+    protected $dates = [
+        'from_date',
+        'to_date',
+    ];
+
+    protected $casts = [
+        'properties' => 'array'
+    ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->table = config('vouchers.table', 'vouchers');
+    }
 
     public function redeemers(): BelongsToMany
     {
-        return $this->belongsToMany(config('vouchers.user_model'), 'user_voucher');
+        return $this->belongsToMany(config('vouchers.user_model'), config('vouchers.relation_table'))->withPivot('redeemed_at');
     }
 
     protected static function newFactory(): VoucherFactory
