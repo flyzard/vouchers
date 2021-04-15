@@ -37,7 +37,7 @@ class CreateVouchersTable extends Migration
         Schema::create($this->relation_table, function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('voucher_id')->constrained('neo_vouchers');
+            $table->foreignId('voucher_id')->constrained($this->table);
             // $table->string('model')->default(config('vouchers.user_model'));
             $table->boolean('status')->default(true);
             $table->timestamp('redeemed_at')->nullable();
