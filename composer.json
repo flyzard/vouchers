@@ -1,7 +1,7 @@
 {
     "name": "flyzard/vouchers",
-    "description": ":package_description",
-    "license": "license",
+    "description": "Vouchers package",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Joao Felizardo",
