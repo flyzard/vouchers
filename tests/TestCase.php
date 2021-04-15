@@ -11,8 +11,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
         parent::setUp();
 
         // $this->userMock = \Mockery::mock('Flyzard\\Vouchers\\Tests\\User');
+        // dd(get_class($this->userMock));
 
-        // $this->app->instance('App\Models\User', $this->userMock);
+        // $this->app->bind('App\Models\User', function ($app) {
+        //     return new $this->userMock();
+        // });
+
+        // $this->app->instance('App\\Models\\User', $this->userMock);
 
         $this->user = $this->createUser();
     }
@@ -35,6 +40,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('vouchers.user_model', \Flyzard\Vouchers\Tests\User::class);
+
         include_once __DIR__ . '/../database/migrations/create_vouchers_table.php.stub';
 
         (new \CreateVouchersTable)->up();

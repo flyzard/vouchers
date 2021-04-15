@@ -16,6 +16,8 @@ class Voucher extends Model
     protected $fillable = [
         'title',
         'code',
+        'amount',
+        'type',
         'status',
         'from_date',
         'to_date',
@@ -33,6 +35,10 @@ class Voucher extends Model
     protected $casts = [
         'properties' => 'array'
     ];
+
+    // Types of voucher discount
+    public const VALUE_TYPE = 0;
+    public const PERCENTAGE_TYPE = 1;
 
     public function __construct(array $attributes = [])
     {
